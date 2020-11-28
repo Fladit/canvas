@@ -1,0 +1,23 @@
+@import "variables";
+
+@mixin toolbarTemplate {
+  position: absolute;
+  width: 100%;
+  height: $heightToolbar;
+  display: flex;
+  //flex-direction: row;
+  align-items: center;
+  box-shadow: 0 4px 5px gray;
+  background-color: white;
+}
+.toolbar {
+  @include toolbarTemplate;
+  z-index: 1;
+
+}
+
+.settingBar {
+  top: $heightToolbar;
+  @include toolbarTemplate;
+  z-index: 0;
+}

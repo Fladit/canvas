@@ -1,0 +1,17 @@
+@import "variables";
+
+.canvas {
+  position: absolute;
+  height: calc(100vh - #{$heightToolbar * 2});
+  width: 100%;
+  top: calc(#{$heightToolbar * 2});
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+canvas {
+  border: 1px solid black;
+  background-color: white;
+}
