@@ -22,6 +22,8 @@ class Rectangle extends Tool {
     }
 
     draw(x, y, w, h) {
+        super.draw()
+        this.ctx.fillStyle = this.getColor()
         this.ctx.fillRect(x, y, w, h)
     }
 

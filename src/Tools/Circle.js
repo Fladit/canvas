@@ -20,7 +20,7 @@ class Circle extends Tool {
     }
 
     draw(x, y, w, h) {
-        console.log(x, y, w, h)
+        super.draw()
         this.ctx.arc(x, y, Math.sqrt((w*w + h*h)), 0, 2* Math.PI, false)
         //this.ctx.closePath()
         this.ctx.fill()

@@ -3,7 +3,7 @@ import {makeAutoObservable} from "mobx";
 class ToolStore {
     tool = null
     color = "black"
-    font = 14
+    lineWidth = 5
 
     constructor() {
         makeAutoObservable(this)
@@ -15,12 +15,14 @@ class ToolStore {
 
     setColor(color) {
         this.color = color
-        console.log(color)
+        //console.log(color)
     }
 
-    setFont(font) {
-        this.font = font
+    setLineWidth(font) {
+        this.lineWidth = font
+        //console.log(this.lineWidth)
     }
+
 
 }
 

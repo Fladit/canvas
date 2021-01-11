@@ -72,4 +72,13 @@
   margin-left: 20px;
 }
 
+.active {
+  outline: solid 2px blue;
+  outline-offset: 2px;
+}
+.active:focus {
+  outline: solid 2px blue;
+  outline-offset: 2px;
+}
+
 /*# sourceMappingURL=toolbar.css.map */

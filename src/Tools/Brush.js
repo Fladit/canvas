@@ -1,4 +1,5 @@
 import Tool from "./Tool";
+import ToolStore from "../store/ToolStore";
 
 class Brush extends Tool {
 
@@ -26,10 +27,15 @@ class Brush extends Tool {
         }
     }
 
+
     draw(x, y) {
+        this.ctx.lineWidth = ToolStore.lineWidth
+        this.ctx.strokeStyle = this.getColor()
         this.ctx.lineTo(x, y)
         this.ctx.stroke()
     }
+
+
 
 
 }

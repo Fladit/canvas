@@ -1,3 +1,5 @@
+import ToolStore from "../store/ToolStore";
+
 class Tool {
     isMouseDown = false
 
@@ -54,7 +56,11 @@ class Tool {
     }
 
     draw() {
+        this.ctx.fillStyle = this.getColor()
+    }
 
+    getColor() {
+        return ToolStore.color
     }
 
 
