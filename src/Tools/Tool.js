@@ -26,10 +26,10 @@ class Tool {
 
 
     figureOnMouseDown(e) {
+        this.isMouseDown = true
         const startCoords = this.getCurrentCoordinates(e)
         this.startX = startCoords.x
         this.startY = startCoords.y
-        this.ctx.moveTo(this.startX, this.startY)
         this.initialImage = this.canvas.toDataURL()
     }
 
@@ -41,6 +41,7 @@ class Tool {
                 this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height)
                 this.ctx.drawImage(img, 0, 0, this.canvas.width, this.canvas.height)
                 this.ctx.beginPath()
+                this.ctx.moveTo(this.startX, this.startY)
                 const {x, y} = this.getCurrentCoordinates(e)
                 const width = x - this.startX
                 const height = y - this.startY

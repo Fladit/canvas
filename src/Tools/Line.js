@@ -1,7 +1,6 @@
-import Tool from "./Tool";
+import Brush from "./Brush";
 
-class Rectangle extends Tool {
-
+class Line extends Brush {
     constructor(canvas) {
         super(canvas);
     }
@@ -10,22 +9,19 @@ class Rectangle extends Tool {
         this.figureOnMouseDown(e)
     }
 
-
-
     onMouseMove(e) {
         this.figureOnMouseMove(e)
     }
 
     onMouseUp(e) {
-        super.onMouseUp(e)
+        super.onMouseUp(e);
     }
 
     draw(x, y, w, h) {
-        super.draw()
-        this.ctx.fillStyle = this.getColor()
-        this.ctx.fillRect(x, y, w, h)
+        super.draw(x + w, y + h);
     }
+
 
 }
 
-export default Rectangle
+export default Line

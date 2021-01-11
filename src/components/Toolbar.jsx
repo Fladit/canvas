@@ -7,6 +7,7 @@ import Rectangle from "../Tools/Rectangle";
 import Circle from "../Tools/Circle";
 import Eraser from "../Tools/Eraser";
 import {observer} from "mobx-react-lite";
+import Line from "../Tools/Line";
 
 const tools = {
     BRUSH: "brush",
@@ -28,7 +29,8 @@ const Toolbar = observer(() => {
                     onClick={() => {new Circle(CanvasStore.currentCanvas); setActiveButton(tools.CIRCLE)}}/>
             <button className={`btn eraser ${(activeButton === tools.ERASER)? "active": ""}`}
                     onClick={() => {new Eraser(CanvasStore.currentCanvas); setActiveButton(tools.ERASER)}}/>
-            <button className={"btn line"}/>
+            <button className={`btn line ${(activeButton === tools.LINE)? "active": ""}`}
+                    onClick={() => {new Line(CanvasStore.currentCanvas); setActiveButton(tools.LINE)}}/>
             <input type={"color"} className={"inputColor"} onChange={e => {ToolStore.setColor(e.target.value)}}/>
             <button className={"btn undo"}/>
             <button className={"btn redo"}/>

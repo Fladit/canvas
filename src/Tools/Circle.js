@@ -7,7 +7,6 @@ class Circle extends Tool {
     }
 
     onMouseDown(e) {
-        super.onMouseDown(e);
         this.figureOnMouseDown(e)
     }
 

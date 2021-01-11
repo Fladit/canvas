@@ -10,8 +10,8 @@ class Brush extends Tool {
     onMouseDown(e) {
         super.onMouseDown(e);
         const {x, y} = this.getCurrentCoordinates(e)
-        this.ctx.moveTo(x, y)
         this.ctx.beginPath()
+        this.ctx.moveTo(x, y)
     }
 
     onMouseUp(e) {
