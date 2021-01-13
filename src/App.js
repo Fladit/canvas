@@ -1,15 +1,12 @@
 import React from 'react';
 import './styles/app.scss'
-import Canvas from "./components/Canvas";
-import SettingBar from "./components/SettingBar";
-import Toolbar from "./components/Toolbar";
+import AuthTemplate from "./components/AuthTemplate/AuthTemplate";
+import DrawWindow from "./components/DrawWindow/DrawWindow";
 
 const App = () => {
   return (
       <div className={"app"}>
-          <Toolbar/>
-          <SettingBar/>
-          <Canvas/>
+          <AuthTemplate/>
       </div>
   );
 };

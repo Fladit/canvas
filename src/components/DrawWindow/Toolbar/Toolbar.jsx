@@ -1,13 +1,13 @@
 import React, {useState} from 'react';
-import "../styles/toolbar.scss"
-import ToolStore from "../store/ToolStore";
-import Brush from "../Tools/Brush";
-import CanvasStore from "../store/CanvasStore";
-import Rectangle from "../Tools/Rectangle";
-import Circle from "../Tools/Circle";
-import Eraser from "../Tools/Eraser";
+import "../../../styles/toolbar.scss"
 import {observer} from "mobx-react-lite";
-import Line from "../Tools/Line";
+import Brush from "../../../Tools/Brush";
+import Rectangle from "../../../Tools/Rectangle";
+import Circle from "../../../Tools/Circle";
+import Eraser from "../../../Tools/Eraser";
+import Line from "../../../Tools/Line";
+import CanvasStore from "../../../store/CanvasStore";
+import ToolStore from "../../../store/ToolStore";
 
 const tools = {
     BRUSH: "brush",

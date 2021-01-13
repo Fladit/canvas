@@ -1,9 +1,8 @@
 import React, {useEffect, useRef} from 'react';
-import "../styles/canvas.scss"
+import "../../../styles/canvas.scss"
 import {observer} from "mobx-react-lite";
-import CanvasStore from "../store/CanvasStore";
-import ToolStore from "../store/ToolStore";
-import Brush from "../Tools/Brush";
+import CanvasStore from "../../../store/CanvasStore";
+import Brush from "../../../Tools/Brush";
 
 const Canvas = observer(() => {
     const canvasRef = useRef()
@@ -15,7 +14,7 @@ const Canvas = observer(() => {
 
     return (
         <div className={"canvas"}>
-            <canvas ref={canvasRef} width={600} height={400}/>
+            <canvas ref={canvasRef} width={900} height={600}/>
         </div>
     );
 });

@@ -33,6 +33,7 @@ class Brush extends Tool {
         this.ctx.strokeStyle = this.getColor()
         this.ctx.lineTo(x, y)
         this.ctx.stroke()
+        console.log("brush draw")
     }
 
 

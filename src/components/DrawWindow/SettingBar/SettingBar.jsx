@@ -1,6 +1,6 @@
 import React from 'react';
-import "../styles/toolbar.scss"
-import ToolStore from "../store/ToolStore";
+import "../../../styles/toolbar.scss"
+import ToolStore from "../../../store/ToolStore";
 import {observer} from "mobx-react-lite";
 
 const SettingBar = observer(() => {

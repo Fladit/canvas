@@ -2,6 +2,8 @@ import {makeAutoObservable} from "mobx";
 
 class CanvasStore {
     currentCanvas = null
+    undoList = []
+    redoList = []
 
     constructor() {
         makeAutoObservable(this)
