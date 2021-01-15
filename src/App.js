@@ -1,13 +1,15 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import './styles/app.scss'
 import DrawWindow from "./components/DrawWindow/DrawWindow";
 import Authentication from "./components/Auth/Authentication/Authentication";
 import Registration from "./components/Auth/Registration/Registration";
 import {Switch, BrowserRouter, Route, Redirect} from "react-router-dom"
 import UserStore from "./store/UserStore";
+import {observer} from "mobx-react-lite";
 
 
-const App = () => {
+const App = observer(() => {
+
   return (
       <div className={"app"}>
           <BrowserRouter>
@@ -26,6 +28,7 @@ const App = () => {
           </BrowserRouter>
       </div>
   );
-};
+});
 
 export default App;
+

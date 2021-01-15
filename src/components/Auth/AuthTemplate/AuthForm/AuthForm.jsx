@@ -1,14 +1,16 @@
 import React from 'react';
 import "../../../../styles/authForm.scss"
 import {validationEnum, useAuthInput} from "../../../../hooks/useAuthInput";
+import {useHistory} from "react-router";
 
 const usernameValidationRules = {[validationEnum.MIN_LENGTH]: 3, [validationEnum.MAX_LENGTH]: 24}
 const passwordValidationRules = {[validationEnum.MIN_LENGTH]: 6, [validationEnum.MAX_LENGTH]: 63}
 
-const AuthForm = ({headerLabel, buttonLabel}) => {
+const AuthForm = ({headerLabel, buttonLabel, authFunc}) => {
 
     const username = useAuthInput("", usernameValidationRules)
     const password = useAuthInput("", passwordValidationRules)
+    const history = useHistory()
 
     return (
         <div className={"authForm"}>
@@ -20,7 +22,8 @@ const AuthForm = ({headerLabel, buttonLabel}) => {
                 <input className={`${passwordClassNames(username.errorMessage, password.errorMessage)}`} placeholder={"Введите пароль..."} value={password.value}
                        onChange={password.onChange}/>
                 {password.errorMessage && <div className={"error-message"}>{password.errorMessage}</div>}
-                <button disabled={username.errorMessage || password.errorMessage || !username.value || !password.value}>{buttonLabel}</button>
+                <button disabled={username.errorMessage || password.errorMessage || !username.value || !password.value}
+                        onClick={() => {authFunc(username.value, password.value, history)}}>{buttonLabel}</button>
             </div>
         </div>
     );
