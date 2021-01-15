@@ -13,16 +13,16 @@ const AuthForm = ({headerLabel, buttonLabel, authFunc}) => {
     const history = useHistory()
 
     return (
-        <div className={"authForm"}>
-            <div className={"mainBox"}>
+        <div className={"auth-form"}>
+            <div className={"main-box"}>
                 <div>{headerLabel}</div>
-                <input className={`${username.errorMessage? "input-error": ""}`} placeholder={"Введите логин..."} value={username.value}
+                <input className={`input-text ${username.errorMessage? "input-error": ""}`} placeholder={"Введите логин..."} value={username.value}
                        onChange={username.onChange}/>
                 {username.errorMessage && <div className={"error-message"}>{username.errorMessage}</div>}
-                <input className={`${passwordClassNames(username.errorMessage, password.errorMessage)}`} placeholder={"Введите пароль..."} value={password.value}
+                <input className={`input-text ${passwordClassNames(username.errorMessage, password.errorMessage)}`} placeholder={"Введите пароль..."} value={password.value}
                        onChange={password.onChange}/>
                 {password.errorMessage && <div className={"error-message"}>{password.errorMessage}</div>}
-                <button disabled={username.errorMessage || password.errorMessage || !username.value || !password.value}
+                <button className={"auth-button"} disabled={username.errorMessage || password.errorMessage || !username.value || !password.value}
                         onClick={() => {authFunc(username.value, password.value, history)}}>{buttonLabel}</button>
             </div>
         </div>

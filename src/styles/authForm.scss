@@ -1,6 +1,6 @@
 @import "variables";
 
-.authForm {
+.auth-form {
   width: 100%;
   position: absolute;
   height: calc(100vh - #{$heightToolbar});
@@ -12,7 +12,7 @@
   background-color: #E9FCFF;
 }
 
-.mainBox {
+.main-box {
   width: 30%;
   height: 50%;
   display: flex;
@@ -25,7 +25,7 @@
   font-size: 40px;
 }
 
-input {
+.input-text {
   margin-top: 30px;
   width: 80%;
   height: 40px;
@@ -33,7 +33,7 @@ input {
   padding: 1px 10px;
 }
 
-button {
+.button-auth {
   margin-top: 30px;
   height: 40px;
   font-size: 24px;
