@@ -4,7 +4,6 @@ import UserStore from "./UserStore";
 const methods = {
     CONNECTION: "startConnection",
     DRAW_EVENT: "drawEvent"
-
 }
 
 class SocketStore {
@@ -57,6 +56,15 @@ class SocketStore {
 
     drawEventHandler(message) {
 
+    }
+
+    sendDrawEvent(parameters, figure) {
+        this.socket.send(JSON.stringify({
+            username: UserStore.username,
+            method: "drawEvent",
+            figure,
+            parameters
+        }))
     }
 }
 
