@@ -3,7 +3,6 @@ import jwtDecode from "jwt-decode";
 
 class UserStore {
     username = ""
-    socket = null
 
     constructor() {
         makeAutoObservable(this)

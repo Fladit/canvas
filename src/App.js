@@ -15,7 +15,7 @@ const App = observer(() => {
           <BrowserRouter>
               {UserStore.isAuth &&
               <Switch>
-                  <Route path={"/:uid"} component={DrawWindow}/>
+                  <Route exact path={"/:uid"} component={DrawWindow}/>
                   <Redirect to={`/${UserStore.username[0]}${Date.now().toString()}`}/>
               </Switch>}
 

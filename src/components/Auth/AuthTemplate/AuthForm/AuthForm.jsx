@@ -22,7 +22,7 @@ const AuthForm = ({headerLabel, buttonLabel, authFunc}) => {
                 <input className={`input-text ${passwordClassNames(username.errorMessage, password.errorMessage)}`} placeholder={"Введите пароль..."} value={password.value}
                        onChange={password.onChange}/>
                 {password.errorMessage && <div className={"error-message"}>{password.errorMessage}</div>}
-                <button className={"auth-button"} disabled={username.errorMessage || password.errorMessage || !username.value || !password.value}
+                <button className={"button-auth"} disabled={username.errorMessage || password.errorMessage || !username.value || !password.value}
                         onClick={() => {authFunc(username.value, password.value, history)}}>{buttonLabel}</button>
             </div>
         </div>

@@ -1,10 +1,11 @@
 import axiosConfigured from "../../utils/axiosConfigured";
 import UserStore from "../../store/UserStore";
 import jwtDecode from "jwt-decode";
+import routes from "../../utils/routes";
 
 const login = async (username, password, history) => {
     try {
-        const response = await axiosConfigured.post("/api/auth/login", {username, password})
+        const response = await axiosConfigured.post(routes.LOGIN, {username, password})
         const token = response.data.token
         console.log("token: ", token)
         localStorage.setItem("token", token)
@@ -24,7 +25,7 @@ const login = async (username, password, history) => {
 
 const registration = async (username, password, history) => {
     try {
-        const response = await axiosConfigured.post("/api/auth/registration", {username, password})
+        const response = await axiosConfigured.post(routes.REGISTRATION, {username, password})
         const token = response.data.token
         console.log("token: ", token)
         localStorage.setItem("token", token)
