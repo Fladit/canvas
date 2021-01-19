@@ -3,6 +3,7 @@ import {makeAutoObservable} from "mobx";
 class CanvasStore {
     currentCanvas = null
     canvasContext = null
+    brushList = []
     undoList = []
     redoList = []
 

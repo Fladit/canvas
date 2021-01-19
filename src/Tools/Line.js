@@ -1,11 +1,8 @@
 import Brush from "./Brush";
-import SocketStore from "../store/SocketStore";
 import ToolStore from "../store/ToolStore";
+import UserStore from "../store/UserStore";
 
 class Line extends Brush {
-    constructor(canvas) {
-        super(canvas);
-    }
 
     onMouseDown(e) {
         this.figureOnMouseDown(e)
@@ -16,19 +13,28 @@ class Line extends Brush {
     }
 
     onMouseUp(e) {
-        super.onMouseUp(e);
-        SocketStore.sendDrawEvent({
+        this.isMouseDown = false
+        this.ctx.closePath()
+        const parameters = {
             x1: this.startX,
             y1: this.startY,
             x2: this.x2,
             y2: this.y2,
-            strokeStyle: ToolStore.color,
+            strokeStyle: this.getColor(),
             lineWidth: ToolStore.lineWidth
-        }, "line")
+        }
+        this.socket.send(JSON.stringify({
+            username: UserStore.username,
+            method: "drawEvent",
+            figure: "line",
+            parameters
+        }))
     }
 
     draw(x, y, w, h) {
         super.draw(x + w, y + h);
+        this.x2 = x + w;
+        this.y2 = y + h;
     }
 
     static drawLine(canvasContext, parameters) {

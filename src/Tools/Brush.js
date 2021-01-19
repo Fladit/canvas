@@ -1,11 +1,12 @@
+
 import Tool from "./Tool";
 import ToolStore from "../store/ToolStore";
+import UserStore from "../store/UserStore";
 
 class Brush extends Tool {
+    brushRate = 20
+    brushPoints = []
 
-    constructor(canvas) {
-        super(canvas);
-    }
 
     onMouseDown(e) {
         super.onMouseDown(e);
@@ -14,11 +15,26 @@ class Brush extends Tool {
         this.y1 = y;
         this.ctx.beginPath()
         this.ctx.moveTo(this.x1, this.y1)
+        this.brushPoints.push({x, y})
     }
 
     onMouseUp(e) {
         super.onMouseUp(e)
         this.ctx.closePath()
+        if (this.brushPoints.length > 1) {
+            const parameters = {
+                points: this.brushPoints,
+                lineWidth: ToolStore.lineWidth,
+                strokeStyle: this.getColor(),
+            }
+
+            this.socket.send(JSON.stringify({
+                username: UserStore.username,
+                method: "drawEvent",
+                figure: "brush",
+                parameters
+            }))
+        }
     }
 
     onMouseMove(e) {
@@ -26,6 +42,22 @@ class Brush extends Tool {
         {
             const {x, y} = this.getCurrentCoordinates(e)
             this.draw(x, y)
+            this.brushPoints.push({x, y})
+            if (this.brushPoints.length >= this.brushRate) {
+                const parameters = {
+                    points: this.brushPoints,
+                    lineWidth: ToolStore.lineWidth,
+                    strokeStyle: this.getColor(),
+                }
+
+                this.socket.send(JSON.stringify({
+                    username: UserStore.username,
+                    method: "drawEvent",
+                    figure: "brush",
+                    parameters
+                }))
+                this.brushPoints = [{x, y}]
+            }
         }
     }
 
@@ -35,14 +67,24 @@ class Brush extends Tool {
         this.ctx.strokeStyle = this.getColor()
         this.ctx.lineTo(x, y)
         this.ctx.stroke()
-        this.x2 = x;
-        this.y2 = y;
     }
 
-
-
-
+    static drawBrush(canvasContext, parameters) {
+        const {points, lineWidth, strokeStyle} = parameters
+        const startPoint = points[0]
+        canvasContext.beginPath()
+        canvasContext.lineWidth = lineWidth
+        canvasContext.strokeStyle = strokeStyle
+        canvasContext.moveTo(startPoint.x, startPoint.y)
+        for (let i = 1; i < points.length; i++) {
+            const point = points[i]
+            canvasContext.lineTo(point.x, point.y)
+        }
+        canvasContext.stroke()
+        canvasContext.closePath()
+    }
 
 }
 
 export default Brush
+

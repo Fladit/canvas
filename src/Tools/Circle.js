@@ -1,12 +1,8 @@
 import Tool from "./Tool";
 import UserStore from "../store/UserStore";
-import SocketStore from "../store/SocketStore";
 
 class Circle extends Tool {
 
-    constructor(canvas) {
-        super(canvas);
-    }
 
     onMouseDown(e) {
         this.figureOnMouseDown(e)
@@ -18,13 +14,19 @@ class Circle extends Tool {
 
     onMouseUp(e) {
         super.onMouseUp(e)
-        SocketStore.sendDrawEvent({
+        const parameters = {
             x: this.startX,
             y: this.startY,
             w: this.w,
             h: this.h,
             fillStyle: this.getColor()
-        }, "circle")
+        }
+        this.socket.send(JSON.stringify({
+            username: UserStore.username,
+            method: "drawEvent",
+            figure: "circle",
+            parameters
+        }))
     }
 
     draw(x, y, w, h) {

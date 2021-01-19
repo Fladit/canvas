@@ -1,11 +1,8 @@
 import Tool from "./Tool";
-import SocketStore from "../store/SocketStore";
+import UserStore from "../store/UserStore";
 
 class Rectangle extends Tool {
 
-    constructor(canvas) {
-        super(canvas);
-    }
 
     onMouseDown(e) {
         this.figureOnMouseDown(e)
@@ -19,13 +16,29 @@ class Rectangle extends Tool {
 
     onMouseUp(e) {
         super.onMouseUp(e)
-        SocketStore.sendDrawEvent({
+        /*
+        WebSocketHandler.sendDrawEvent({
             x: this.startX,
             y: this.startY,
             w: this.w,
             h: this.h,
             fillStyle: this.getColor()
         }, "rectangle")
+
+         */
+        const parameters = {
+            x: this.startX,
+            y: this.startY,
+            w: this.w,
+            h: this.h,
+            fillStyle: this.getColor()
+        }
+        this.socket.send(JSON.stringify({
+            username: UserStore.username,
+            method: "drawEvent",
+            figure: "rectangle",
+            parameters
+        }))
     }
 
     draw(x, y, w, h) {

@@ -4,6 +4,7 @@ import Toolbar from "./Toolbar/Toolbar";
 import SettingBar from "./SettingBar/SettingBar";
 import {useParams} from "react-router";
 import {observer} from "mobx-react-lite";
+import WebSocketHandler from "../../utils/WebSocketHandler";
 import SocketStore from "../../store/SocketStore";
 
 const DrawWindow = observer(() => {
@@ -11,6 +12,8 @@ const DrawWindow = observer(() => {
     useEffect(() => {
         const sessionID = params.uid
         const socket = new WebSocket(`ws://localhost:5000/draw/${sessionID}`)
+        //SocketStore.setSocket(socket, sessionID)
+        WebSocketHandler.setSocket(socket)
         SocketStore.setSocket(socket, sessionID)
         return () => {
             socket.close()

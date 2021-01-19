@@ -2,9 +2,6 @@ import Brush from "./Brush";
 
 class Eraser extends Brush{
 
-    constructor(canvas) {
-        super(canvas);
-    }
 
     onMouseDown(e) {
         super.onMouseDown(e);

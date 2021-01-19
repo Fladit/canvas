@@ -8,6 +8,7 @@ import Eraser from "../../../Tools/Eraser";
 import Line from "../../../Tools/Line";
 import CanvasStore from "../../../store/CanvasStore";
 import ToolStore from "../../../store/ToolStore";
+import SocketStore from "../../../store/SocketStore";
 
 const tools = {
     BRUSH: "brush",
@@ -22,15 +23,15 @@ const Toolbar = observer(() => {
     return (
         <div className={"toolbar"}>
             <button className={`btn brush ${(activeButton === tools.BRUSH)? "active": ""}`}
-                    onClick={() => {new Brush(CanvasStore.currentCanvas); setActiveButton(tools.BRUSH)}}/>
+                    onClick={() => {new Brush(CanvasStore.currentCanvas, SocketStore.socket); setActiveButton(tools.BRUSH); console.log(SocketStore.socket)}}/>
             <button className={`btn rect ${(activeButton === tools.RECT)? "active": ""}`}
-                    onClick={() => {new Rectangle(CanvasStore.currentCanvas); setActiveButton(tools.RECT)}}/>
+                    onClick={() => {new Rectangle(CanvasStore.currentCanvas, SocketStore.socket); setActiveButton(tools.RECT)}}/>
             <button className={`btn circle ${(activeButton === tools.CIRCLE)? "active": ""}`}
-                    onClick={() => {new Circle(CanvasStore.currentCanvas); setActiveButton(tools.CIRCLE)}}/>
+                    onClick={() => {new Circle(CanvasStore.currentCanvas, SocketStore.socket); setActiveButton(tools.CIRCLE)}}/>
             <button className={`btn eraser ${(activeButton === tools.ERASER)? "active": ""}`}
-                    onClick={() => {new Eraser(CanvasStore.currentCanvas); setActiveButton(tools.ERASER)}}/>
+                    onClick={() => {new Eraser(CanvasStore.currentCanvas, SocketStore.socket); setActiveButton(tools.ERASER)}}/>
             <button className={`btn line ${(activeButton === tools.LINE)? "active": ""}`}
-                    onClick={() => {new Line(CanvasStore.currentCanvas); setActiveButton(tools.LINE)}}/>
+                    onClick={() => {new Line(CanvasStore.currentCanvas, SocketStore.socket); setActiveButton(tools.LINE)}}/>
             <input type={"color"} className={"inputColor"} onChange={e => {ToolStore.setColor(e.target.value)}}/>
             <button className={"btn undo"}/>
             <button className={"btn redo"}/>

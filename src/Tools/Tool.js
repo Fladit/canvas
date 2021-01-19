@@ -3,8 +3,9 @@ import ToolStore from "../store/ToolStore";
 class Tool {
     isMouseDown = false
 
-    constructor(canvas) {
+    constructor(canvas, socket) {
         this.canvas = canvas
+        this.socket = socket
         this.ctx = canvas.getContext("2d")
         this.canvas.onmousemove = this.onMouseMove.bind(this)
         this.canvas.onmouseup = this.onMouseUp.bind(this)
