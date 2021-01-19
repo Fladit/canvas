@@ -2,6 +2,7 @@ import {makeAutoObservable} from "mobx";
 
 class CanvasStore {
     currentCanvas = null
+    canvasContext = null
     undoList = []
     redoList = []
 
@@ -11,6 +12,7 @@ class CanvasStore {
 
     setCurrentCanvas(canvas) {
         this.currentCanvas = canvas
+        this.canvasContext = this.currentCanvas.getContext("2d")
     }
 
 }

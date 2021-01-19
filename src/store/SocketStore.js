@@ -1,5 +1,8 @@
 import {makeAutoObservable} from "mobx";
 import UserStore from "./UserStore";
+import Circle from "../Tools/Circle";
+import CanvasStore from "./CanvasStore";
+import Rectangle from "../Tools/Rectangle";
 
 const methods = {
     CONNECTION: "startConnection",
@@ -55,6 +58,30 @@ class SocketStore {
     }
 
     drawEventHandler(message) {
+        switch (message.figure) {
+            case "circle": {
+                Circle.drawCircle(CanvasStore.canvasContext, message.parameters)
+                break;
+            }
+            case "rectangle": {
+                Rectangle.drawRectangle(CanvasStore.canvasContext, message.parameters)
+                break;
+            }
+
+            case "line": {
+                break;
+            }
+
+            case "brush": {
+                break;
+            }
+
+            default: {
+                break;
+            }
+
+        }
+
 
     }
 
