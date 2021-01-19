@@ -3,6 +3,7 @@ import UserStore from "./UserStore";
 import Circle from "../Tools/Circle";
 import CanvasStore from "./CanvasStore";
 import Rectangle from "../Tools/Rectangle";
+import Line from "../Tools/Line";
 
 const methods = {
     CONNECTION: "startConnection",
@@ -69,6 +70,8 @@ class SocketStore {
             }
 
             case "line": {
+                console.log(message)
+                Line.drawLine(CanvasStore.canvasContext, message.parameters)
                 break;
             }
 

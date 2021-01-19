@@ -20,8 +20,8 @@ class Rectangle extends Tool {
     onMouseUp(e) {
         super.onMouseUp(e)
         SocketStore.sendDrawEvent({
-            x: this.x,
-            y: this.y,
+            x: this.startX,
+            y: this.startY,
             w: this.w,
             h: this.h,
             fillStyle: this.getColor()
@@ -32,8 +32,6 @@ class Rectangle extends Tool {
         super.draw()
         this.ctx.fillStyle = this.getColor()
         this.ctx.fillRect(x, y, w, h)
-        this.x = x
-        this.y = y
         this.w = w
         this.h = h
     }

@@ -10,8 +10,10 @@ class Brush extends Tool {
     onMouseDown(e) {
         super.onMouseDown(e);
         const {x, y} = this.getCurrentCoordinates(e)
+        this.x1 = x;
+        this.y1 = y;
         this.ctx.beginPath()
-        this.ctx.moveTo(x, y)
+        this.ctx.moveTo(this.x1, this.y1)
     }
 
     onMouseUp(e) {
@@ -33,8 +35,10 @@ class Brush extends Tool {
         this.ctx.strokeStyle = this.getColor()
         this.ctx.lineTo(x, y)
         this.ctx.stroke()
-        console.log("brush draw")
+        this.x2 = x;
+        this.y2 = y;
     }
+
 
 
 

@@ -19,8 +19,8 @@ class Circle extends Tool {
     onMouseUp(e) {
         super.onMouseUp(e)
         SocketStore.sendDrawEvent({
-            x: this.x,
-            y: this.y,
+            x: this.startX,
+            y: this.startY,
             w: this.w,
             h: this.h,
             fillStyle: this.getColor()
@@ -32,8 +32,6 @@ class Circle extends Tool {
         this.ctx.arc(x, y, Math.sqrt((w*w + h*h)), 0, 2* Math.PI, false)
         //this.ctx.closePath()
         this.ctx.fill()
-        this.x = x
-        this.y = y
         this.w = w
         this.h = h
     }
