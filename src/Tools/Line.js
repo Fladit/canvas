@@ -6,6 +6,8 @@ class Line extends Brush {
 
     onMouseDown(e) {
         this.figureOnMouseDown(e)
+        this.ctx.lineWidth = ToolStore.lineWidth
+        this.ctx.strokeStyle = this.getColor()
     }
 
     onMouseMove(e) {

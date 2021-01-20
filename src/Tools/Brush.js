@@ -15,6 +15,8 @@ class Brush extends Tool {
         this.y1 = y;
         this.ctx.beginPath()
         this.ctx.moveTo(this.x1, this.y1)
+        this.ctx.lineWidth = ToolStore.lineWidth
+        this.ctx.strokeStyle = this.getColor()
         this.brushPoints.push({x, y})
     }
 
@@ -64,8 +66,6 @@ class Brush extends Tool {
 
 
     draw(x, y) {
-        this.ctx.lineWidth = ToolStore.lineWidth
-        this.ctx.strokeStyle = this.getColor()
         this.ctx.lineTo(x, y)
         this.ctx.stroke()
     }

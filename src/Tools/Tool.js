@@ -58,7 +58,7 @@ class Tool {
     }
 
     draw() {
-        this.ctx.fillStyle = this.getColor()
+
     }
 
     getColor() {

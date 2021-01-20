@@ -6,6 +6,7 @@ class Rectangle extends Tool {
 
     onMouseDown(e) {
         this.figureOnMouseDown(e)
+        this.ctx.fillStyle = this.getColor()
     }
 
 
@@ -42,8 +43,6 @@ class Rectangle extends Tool {
     }
 
     draw(x, y, w, h) {
-        super.draw()
-        this.ctx.fillStyle = this.getColor()
         this.ctx.fillRect(x, y, w, h)
         this.w = w
         this.h = h

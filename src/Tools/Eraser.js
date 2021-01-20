@@ -1,4 +1,5 @@
 import Brush from "./Brush";
+import ToolStore from "../store/ToolStore";
 
 class Eraser extends Brush{
 
