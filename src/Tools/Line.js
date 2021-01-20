@@ -14,7 +14,7 @@ class Line extends Brush {
 
     onMouseUp(e) {
         this.isMouseDown = false
-        this.ctx.closePath()
+        //this.ctx.closePath()
         const parameters = {
             x1: this.startX,
             y1: this.startY,
@@ -45,7 +45,7 @@ class Line extends Brush {
         canvasContext.lineWidth = lineWidth
         canvasContext.lineTo(x2, y2)
         canvasContext.stroke()
-        canvasContext.closePath()
+        //canvasContext.closePath()
     }
 
 

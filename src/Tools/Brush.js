@@ -4,7 +4,7 @@ import ToolStore from "../store/ToolStore";
 import UserStore from "../store/UserStore";
 
 class Brush extends Tool {
-    brushRate = 20
+    brushRate = 10
     brushPoints = []
 
 
@@ -20,7 +20,7 @@ class Brush extends Tool {
 
     onMouseUp(e) {
         super.onMouseUp(e)
-        this.ctx.closePath()
+        //this.ctx.closePath()
         if (this.brushPoints.length > 1) {
             const parameters = {
                 points: this.brushPoints,
@@ -35,6 +35,7 @@ class Brush extends Tool {
                 parameters
             }))
         }
+        this.brushPoints = []
     }
 
     onMouseMove(e) {
@@ -72,16 +73,18 @@ class Brush extends Tool {
     static drawBrush(canvasContext, parameters) {
         const {points, lineWidth, strokeStyle} = parameters
         const startPoint = points[0]
+        console.log("start")
         canvasContext.beginPath()
+        canvasContext.moveTo(startPoint.x, startPoint.y)
         canvasContext.lineWidth = lineWidth
         canvasContext.strokeStyle = strokeStyle
-        canvasContext.moveTo(startPoint.x, startPoint.y)
         for (let i = 1; i < points.length; i++) {
             const point = points[i]
             canvasContext.lineTo(point.x, point.y)
+            canvasContext.stroke()
         }
-        canvasContext.stroke()
-        canvasContext.closePath()
+        //canvasContext.closePath()
+        console.log("end")
     }
 
 }
