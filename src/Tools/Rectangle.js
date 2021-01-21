@@ -50,6 +50,7 @@ class Rectangle extends Tool {
 
     static drawRectangle(canvasContext, parameters) {
         const {x, y, w, h, fillStyle} = parameters
+        canvasContext.beginPath()
         canvasContext.fillStyle = fillStyle
         canvasContext.rect(x, y, w, h)
         canvasContext.fill()
