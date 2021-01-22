@@ -84,7 +84,7 @@ class Brush extends Tool {
             canvasContext.stroke()
         }
         //canvasContext.closePath()
-        console.log("end")
+        //console.log("end")
     }
 
 }

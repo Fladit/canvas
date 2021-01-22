@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import './styles/app.scss'
 import DrawWindow from "./components/DrawWindow/DrawWindow";
 import Authentication from "./components/Auth/Authentication/Authentication";
@@ -9,6 +9,15 @@ import {observer} from "mobx-react-lite";
 
 
 const App = observer(() => {
+    const [sessionID, setSessionID] = useState("")
+
+    // Добавить отправку запроса на сервес с созданием сессии.
+    useEffect(() => {
+        if (UserStore.isAuth) {
+            const sessionID = `/${UserStore.username.substring(0, 3).toLowerCase()}${Date.now().toString()}`
+            setSessionID(sessionID)
+        }
+    }, [UserStore.isAuth])
 
   return (
       <div className={"app"}>
@@ -16,7 +25,7 @@ const App = observer(() => {
               {UserStore.isAuth &&
               <Switch>
                   <Route exact path={"/:uid"} component={DrawWindow}/>
-                  <Redirect to={`/${UserStore.username[0]}${Date.now().toString()}`}/>
+                  <Redirect to={sessionID}/>
               </Switch>}
 
               {!UserStore.isAuth &&
