@@ -86,6 +86,7 @@ class WebSocketHandler {
 
     }
 
+    /*
     sendDrawEvent(parameters, figure) {
         this.socket.send(JSON.stringify({
             username: UserStore.username,
@@ -94,6 +95,8 @@ class WebSocketHandler {
             parameters
         }))
     }
+
+     */
 }
 
 export default new WebSocketHandler()
