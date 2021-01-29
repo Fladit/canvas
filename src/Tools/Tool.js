@@ -10,7 +10,6 @@ class Tool {
         this.canvas.onmousemove = this.onMouseMove.bind(this)
         this.canvas.onmouseup = this.onMouseUp.bind(this)
         this.canvas.onmousedown = this.onMouseDown.bind(this)
-        console.log(this.canvas.toDataURL(), typeof this.canvas.toDataURL())
     }
 
     onMouseDown(e) {

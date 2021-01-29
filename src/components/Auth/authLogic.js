@@ -13,6 +13,7 @@ const login = async (username, password, history) => {
         if (decoded.hasOwnProperty("username")) {
             UserStore.setUsername(decoded.username)
             history.push("/")
+            console.log("next")
         }
         else {
             alert("Ошибка на сервере, username не был вовзращён.")

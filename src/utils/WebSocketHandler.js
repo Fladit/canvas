@@ -4,6 +4,7 @@ import CanvasStore from "../store/CanvasStore";
 import Rectangle from "../Tools/Rectangle";
 import Line from "../Tools/Line";
 import Brush from "../Tools/Brush";
+import SocketStore from "../store/SocketStore";
 
 const methods = {
     CONNECTION: "startConnection",
@@ -16,9 +17,10 @@ class WebSocketHandler {
     constructor() {
     }
 
-    setSocket(socket) {
+    setSocket(socket, sessionID) {
         this.socket = socket
         this.eventHandler()
+        SocketStore.setSocket(socket, sessionID)
     }
 
     eventHandler() {

@@ -11,12 +11,13 @@ const DrawWindow = observer(() => {
     const params = useParams()
     useEffect(() => {
         const sessionID = params.uid
-        const socket = new WebSocket(`ws://localhost:5000/draw/${sessionID}`)
+        console.log(sessionID)
+        const socket = new WebSocket(`ws://localhost:5000/draw/${sessionID}?token=${localStorage.getItem("token")}`)
         //SocketStore.setSocket(socket, sessionID)
-        WebSocketHandler.setSocket(socket)
-        SocketStore.setSocket(socket, sessionID)
+        WebSocketHandler.setSocket(socket, sessionID)
         return () => {
             socket.close()
+            SocketStore.setSocket(null, null)
             console.log("socket закрыт")
         }
     }, [])
