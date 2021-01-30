@@ -8,11 +8,11 @@ const Navbar = ({headerLabel}) => {
         <div className={"navbar"}>
             {headerLabel === "Регистрация" ?
                 <div className={"link"}>
-                    <Link to={"/login"} style={{textDecoration: "none", color: "black"}}>Авторизация</Link>
+                    <Link to={"/auth/login"} style={{textDecoration: "none", color: "black"}}>Авторизация</Link>
                 </div>
                 :
                 <div className={"link"}>
-                    <Link to={"/registration"} style={{textDecoration: "none", color: "black"}}>Регистрация</Link>
+                    <Link to={"/auth/registration"} style={{textDecoration: "none", color: "black"}}>Регистрация</Link>
                 </div>
             }
         </div>

@@ -7,13 +7,12 @@ const login = async (username, password, history) => {
     try {
         const response = await axiosConfigured.post(routes.LOGIN, {username, password})
         const token = response.data.token
-        console.log("token: ", token)
-        localStorage.setItem("token", token)
         const decoded =jwtDecode(token)
         if (decoded.hasOwnProperty("username")) {
+            //console.log("token: ", token)
+            localStorage.setItem("token", token)
             UserStore.setUsername(decoded.username)
-            history.push("/")
-            console.log("next")
+            //history.push("/")
         }
         else {
             alert("Ошибка на сервере, username не был вовзращён.")

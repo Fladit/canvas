@@ -8,6 +8,7 @@ import UserStore from "./store/UserStore";
 import {observer} from "mobx-react-lite";
 import axiosConfigured from "./utils/axiosConfigured";
 import routes from "./utils/routes";
+import {useHistory, useLocation} from "react-router";
 
 
 const App = observer(() => {
@@ -15,17 +16,15 @@ const App = observer(() => {
 
     // Добавить отправку запроса на сервер с созданием сессии.
     useEffect(() => {
+        console.log("authChange")
         if (UserStore.isAuth) {
-            console.log("auth change")
             const sessionID = `${UserStore.username.substring(0, 3).toLowerCase()}${Date.now().toString()}`
             createCanvas(sessionID).then(setSessionID)
         }
     }, [UserStore.isAuth])
-    console.log(UserStore.isAuth, sessionID)
 
   return (
       <div className={"app"}>
-          <BrowserRouter>
               {UserStore.isAuth &&
               <Switch>
                   <Route exact path={"/:uid"} component={DrawWindow}/>
@@ -34,11 +33,10 @@ const App = observer(() => {
 
               {!UserStore.isAuth &&
               <Switch>
-                  <Route exact path={"/login"} component={Authentication}/>
-                  <Route exact path={"/registration"} component={Registration}/>
-                  <Redirect to={"/login"}/>
+                  <Route exact path={"/auth/login"} component={Authentication}/>
+                  <Route exact path={"/auth/registration"} component={Registration}/>
+                  <Redirect to={"/auth/login"}/>
               </Switch>}
-          </BrowserRouter>
       </div>
   );
 });
