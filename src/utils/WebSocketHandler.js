@@ -5,10 +5,12 @@ import Rectangle from "../Tools/Rectangle";
 import Line from "../Tools/Line";
 import Brush from "../Tools/Brush";
 import SocketStore from "../store/SocketStore";
+import Tool from "../Tools/Tool";
 
 const methods = {
     CONNECTION: "startConnection",
-    DRAW_EVENT: "drawEvent"
+    DRAW_EVENT: "drawEvent",
+    SET_START_IMAGE: "setStartImage",
 }
 
 class WebSocketHandler {
@@ -29,13 +31,16 @@ class WebSocketHandler {
     }
 
     onOpenHandler() {
+        // Убрать этот костыль, сделав автоотправку на сервере, т.к username можно получить из декодированного токена
         console.log("openHandler")
-        const message = {
-            method: methods.CONNECTION,
-            username: UserStore.username,
-            authorization: localStorage.getItem("token"),
-        }
-        this.socket.send(JSON.stringify(message))
+        setTimeout(() => {
+            const message = {
+                method: methods.CONNECTION,
+                username: UserStore.username,
+                authorization: localStorage.getItem("token"),
+            }
+            this.socket.send(JSON.stringify(message))
+        }, 1000)
     }
 
     onMessageHandler(event) {
@@ -50,6 +55,9 @@ class WebSocketHandler {
             case methods.DRAW_EVENT: {
                 this.drawEventHandler(message)
                 break;
+            }
+            case methods.SET_START_IMAGE: {
+                Tool.setCurrentImage(CanvasStore.currentCanvas, message.image)
             }
             default: {
                 break;
@@ -69,7 +77,7 @@ class WebSocketHandler {
             }
 
             case "line": {
-                console.log(message)
+                //console.log(message)
                 Line.drawLine(CanvasStore.canvasContext, message.parameters)
                 break;
             }

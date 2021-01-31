@@ -65,6 +65,15 @@ class Tool {
         return ToolStore.color
     }
 
+    static setCurrentImage(canvas, imageURL) {
+        const img = new Image()
+        img.src = imageURL
+        img.onload = () => {
+            canvas.getContext("2d").drawImage(img, 0, 0, canvas.width, canvas.height)
+        }
+
+    }
+
 
 }
 
