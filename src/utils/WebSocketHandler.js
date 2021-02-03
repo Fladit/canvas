@@ -31,16 +31,7 @@ class WebSocketHandler {
     }
 
     onOpenHandler() {
-        // Убрать этот костыль, сделав автоотправку на сервере, т.к username можно получить из декодированного токена
         console.log("openHandler")
-        setTimeout(() => {
-            const message = {
-                method: methods.CONNECTION,
-                username: UserStore.username,
-                authorization: localStorage.getItem("token"),
-            }
-            this.socket.send(JSON.stringify(message))
-        }, 1000)
     }
 
     onMessageHandler(event) {
