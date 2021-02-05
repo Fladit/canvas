@@ -8,7 +8,6 @@ import UserStore from "./store/UserStore";
 import {observer} from "mobx-react-lite";
 import axiosConfigured from "./utils/axiosConfigured";
 import routes from "./utils/routes";
-import {useHistory, useLocation} from "react-router";
 
 
 const App = observer(() => {
@@ -22,13 +21,14 @@ const App = observer(() => {
             createCanvas(sessionID).then(setSessionID)
         }
     }, [UserStore.isAuth])
+    console.log(sessionID)
 
   return (
       <div className={"app"}>
               {UserStore.isAuth &&
               <Switch>
                   <Route exact path={"/:uid"} component={DrawWindow}/>
-                  <Redirect to={`/${sessionID}`}/>
+                  <Redirect to={`/${sessionID? sessionID: ""}`}/>
               </Switch>}
 
               {!UserStore.isAuth &&
