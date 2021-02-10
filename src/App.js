@@ -8,6 +8,7 @@ import UserStore from "./store/UserStore";
 import {observer} from "mobx-react-lite";
 import axiosConfigured from "./utils/axiosConfigured";
 import routes from "./utils/routes";
+import Main from "./components/Main/Main";
 
 
 const App = observer(() => {
@@ -26,10 +27,15 @@ const App = observer(() => {
   return (
       <div className={"app"}>
               {UserStore.isAuth &&
+                  /*
               <Switch>
                   <Route exact path={"/:uid"} component={DrawWindow}/>
                   <Redirect to={`/${sessionID? sessionID: ""}`}/>
-              </Switch>}
+              </Switch>
+
+                   */
+                  <Main/>
+              }
 
               {!UserStore.isAuth &&
               <Switch>

@@ -3,7 +3,7 @@ import "../../../../styles/navbar.scss"
 import {Link} from "react-router-dom";
 
 
-const Navbar = ({headerLabel}) => {
+const AuthNavbar = ({headerLabel}) => {
     return (
         <div className={"navbar"}>
             {headerLabel === "Регистрация" ?
@@ -19,4 +19,4 @@ const Navbar = ({headerLabel}) => {
     );
 };
 
-export default Navbar;
+export default AuthNavbar;
