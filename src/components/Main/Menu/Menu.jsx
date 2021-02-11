@@ -3,7 +3,13 @@ import React from 'react';
 const Menu = () => {
     return (
         <div>
-            Menu
+            <ul>
+                <li>Test</li>
+                <li>Test</li>
+                <li>Test</li>
+                <li>Test</li>
+                <li>Test</li>
+            </ul>
         </div>
     );
 };

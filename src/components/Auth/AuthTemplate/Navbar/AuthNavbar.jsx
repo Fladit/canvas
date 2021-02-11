@@ -1,6 +1,7 @@
 import React from 'react';
 import "../../../../styles/navbar.scss"
 import {Link} from "react-router-dom";
+import {authLinks} from "../../../../api/NavbarLinks"
 
 
 const AuthNavbar = ({headerLabel}) => {
@@ -8,11 +9,11 @@ const AuthNavbar = ({headerLabel}) => {
         <div className={"navbar"}>
             {headerLabel === "Регистрация" ?
                 <div className={"link"}>
-                    <Link to={"/auth/login"} style={{textDecoration: "none", color: "black"}}>Авторизация</Link>
+                    <Link to={authLinks.LOGIN} style={{textDecoration: "none", color: "black"}}>Авторизация</Link>
                 </div>
                 :
                 <div className={"link"}>
-                    <Link to={"/auth/registration"} style={{textDecoration: "none", color: "black"}}>Регистрация</Link>
+                    <Link to={authLinks.REGISTRATION} style={{textDecoration: "none", color: "black"}}>Регистрация</Link>
                 </div>
             }
         </div>
