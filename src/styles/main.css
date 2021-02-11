@@ -4,4 +4,11 @@
   background-color: #E9FCFF;
 }
 
+.content {
+  position: absolute;
+  height: calc(100vh - 40px);
+  width: 100vw;
+  top: 40px;
+}
+
 /*# sourceMappingURL=main.css.map */

@@ -1,5 +1,14 @@
+@import "variables";
+
 .main {
   height: 100vh;
   width: 100vw;
   background-color: #E9FCFF;
+}
+
+.content {
+  position: absolute;
+  height: calc(100vh - #{$heightToolbar});
+  width: 100vw;
+  top: $heightToolbar;
 }
