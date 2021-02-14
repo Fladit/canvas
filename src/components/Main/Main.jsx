@@ -7,7 +7,7 @@ const Main = () => {
     return (
         <div className={"main"}>
             <Navbar/>
-            <div className={"content"}>
+            <div className={"main__menu"}>
                 <Menu/>
             </div>
         </div>

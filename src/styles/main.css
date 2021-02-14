@@ -4,11 +4,15 @@
   background-color: #E9FCFF;
 }
 
-.content {
+.main__menu {
   position: absolute;
   height: calc(100vh - 40px);
   width: 100vw;
   top: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 /*# sourceMappingURL=main.css.map */

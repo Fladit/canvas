@@ -11,6 +11,7 @@
 }
 
 .main-box {
+  position: relative;
   width: 30%;
   height: 50%;
   display: flex;

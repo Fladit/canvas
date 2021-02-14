@@ -9,9 +9,9 @@ const AuthNavbar = ({headerLabel}) => {
     return (
         <div className={"navbar navbar-flex-end"}>
             {headerLabel === "Регистрация" ?
-                <NavbarLink path={authLinks.LOGIN} label={"Авторизация"}/>
+                <NavbarLink path={authLinks.LOGIN.path} label={authLinks.LOGIN.label}/>
                 :
-                <NavbarLink path={authLinks.REGISTRATION} label={"Регистрация"}/>
+                <NavbarLink path={authLinks.REGISTRATION.path} label={authLinks.LOGIN.label}/>
             }
         </div>
     );
