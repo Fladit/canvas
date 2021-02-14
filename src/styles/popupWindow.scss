@@ -1,0 +1,17 @@
+@import "variables";
+
+.popup-window {
+  display: none;
+  position: absolute;
+  top: $heightToolbar;
+  height: 100vh;
+  width: 100vw;
+}
+
+.popup-window.popup-window__active {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.4);
+}

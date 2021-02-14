@@ -11,7 +11,7 @@ const AuthNavbar = ({headerLabel}) => {
             {headerLabel === "Регистрация" ?
                 <NavbarLink path={authLinks.LOGIN.path} label={authLinks.LOGIN.label}/>
                 :
-                <NavbarLink path={authLinks.REGISTRATION.path} label={authLinks.LOGIN.label}/>
+                <NavbarLink path={authLinks.REGISTRATION.path} label={authLinks.REGISTRATION.label}/>
             }
         </div>
     );
