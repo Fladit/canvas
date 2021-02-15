@@ -7,8 +7,7 @@ const PopupWindow = ({isActive, setIsActive, children}) => {
         <div className={`popup-window ${isActive? "popup-window__active" : ""}`}
              onClick={() => {if (isActive) setIsActive(false)}}>
             {isActive?
-                <div style={{height: "100px", width: "100px", backgroundColor: "white"}}
-                     onClick={(e) => {e.stopPropagation()}}>
+                <div onClick={(e) => {e.stopPropagation()}}>
                     {children}
                 </div>
                 : ""}

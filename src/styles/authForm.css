@@ -32,14 +32,6 @@
   padding: 1px 10px;
 }
 
-.button-auth {
-  margin-top: 30px;
-  height: 40px;
-  font-size: 24px;
-  padding: 3px 10px;
-  background-color: #E9FCFF;
-}
-
 .input-password-if-username-error {
   margin-top: 15px !important;
 }

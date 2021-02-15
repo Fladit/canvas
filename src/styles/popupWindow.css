@@ -1,9 +1,11 @@
 .popup-window {
-  display: none;
   position: absolute;
   top: 40px;
-  height: 100vh;
+  height: calc(100vh - 40px);
   width: 100vw;
+  transition-duration: 0.1s;
+  pointer-events: none;
+  opacity: 0;
 }
 
 .popup-window.popup-window__active {
@@ -12,6 +14,22 @@
   justify-content: center;
   align-items: center;
   background-color: rgba(0, 0, 0, 0.4);
+  pointer-events: all;
+  opacity: 1;
+  transition-duration: 0.2s;
+}
+
+.popup-test {
+  width: 100px;
+  height: 100px;
+  background-color: white;
+  transition-duration: 1s;
+}
+
+.popup-test:hover {
+  width: 300px;
+  height: 300px;
+  transition-duration: 3s;
 }
 
 /*# sourceMappingURL=popupWindow.css.map */

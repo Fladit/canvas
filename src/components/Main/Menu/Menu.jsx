@@ -1,13 +1,14 @@
 import React from 'react';
 import "../../../styles/authForm.css"
+import Button from "../../../utils/Button/Button";
 
 const Menu = ({setIsActive}) => {
     return (
         <div className={"main-box"}>
             <div style={{position: "absolute", top: "40px"}}>Canvas</div>
-            <button className={"button-auth"}> Создать сессию </button>
-            <button className={"button-auth"} onClick={(e) =>
-            { e.stopPropagation(); setIsActive(true)}}> Присоединиться </button>
+            <Button buttonLabel={"Создать сессию"}/>
+            <Button buttonLabel={"Присоединиться"} clickFunction={(e) =>
+            { e.stopPropagation(); setIsActive(true)}}/>
         </div>
     );
 };

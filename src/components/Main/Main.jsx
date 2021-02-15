@@ -5,6 +5,7 @@ import Navbar from "./Navbar/Navbar";
 import PopupWindow from "../../utils/PopupWindow/PopupWindow";
 import {useState} from "react";
 import {useEffect} from "react";
+import JoinSession from "./JoinSession/JoinSession";
 
 const Main = () => {
     const [isActive, setIsActive] = useState(false)
@@ -20,7 +21,7 @@ const Main = () => {
                 <Menu setIsActive={setIsActive}/>
             </div>
             <PopupWindow isActive={isActive} setIsActive={setIsActive}>
-                Test
+                <JoinSession/>
             </PopupWindow>
         </div>
     )

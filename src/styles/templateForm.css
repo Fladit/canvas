@@ -1,0 +1,15 @@
+.template-form {
+  width: auto;
+  height: auto;
+  padding: 40px 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 0 10px gray;
+  border-radius: 14px;
+  background-color: white;
+  font-size: 40px;
+}
+
+/*# sourceMappingURL=templateForm.css.map */
