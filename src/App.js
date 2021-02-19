@@ -12,6 +12,8 @@ import Main from "./components/Main/Main";
 
 
 const App = observer(() => {
+
+    /*
     const [sessionID, setSessionID] = useState("")
 
     // Добавить отправку запроса на сервер с созданием сессии.
@@ -24,17 +26,16 @@ const App = observer(() => {
     }, [UserStore.isAuth])
     console.log(sessionID)
 
+     */
+
   return (
       <div className={"app"}>
               {UserStore.isAuth &&
-                  /*
               <Switch>
+                  <Route exact path={"/"} component={Main}/>
                   <Route exact path={"/:uid"} component={DrawWindow}/>
-                  <Redirect to={`/${sessionID? sessionID: ""}`}/>
+                  <Redirect to={"/"}/>
               </Switch>
-
-                   */
-                  <Main/>
               }
 
               {!UserStore.isAuth &&
@@ -50,6 +51,7 @@ const App = observer(() => {
 export default App;
 
 
+/*
 async function createCanvas(sessionID) {
     try {
         console.log("sent")
@@ -63,4 +65,6 @@ async function createCanvas(sessionID) {
         alert(e.response.data.message)
     }
 }
+
+ */
 

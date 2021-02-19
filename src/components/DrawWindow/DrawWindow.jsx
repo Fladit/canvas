@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import Canvas from "./Canvas/Canvas";
 import Toolbar from "./Toolbar/Toolbar";
 import SettingBar from "./SettingBar/SettingBar";
@@ -15,32 +15,42 @@ const uidLength = {
 const DrawWindow = observer(() => {
     const params = useParams()
     const history = useHistory()
+    const [isCorrectSession, setIsCorrectSession] = useState(false)
+
     useEffect(() => {
         const sessionID = params.uid
         console.log(sessionID)
-        if (sessionID.length === uidLength.UID || sessionID.length === uidLength.UUID_V4) {
-            const socket = new WebSocket(`ws://localhost:5000/draw/${sessionID}?token=${localStorage.getItem("token")}`)
-            //SocketStore.setSocket(socket, sessionID)
-            WebSocketHandler.setSocket(socket, sessionID)
-            return () => {
-                socket.close()
-                SocketStore.setSocket(null, null)
-                console.log("socket закрыт")
-            }
-        }
-        else {
-            alert("Введён неверный UID сессии!")
-            // Заменить, когда будет готова страница с ошибкой при вводе неправильного url
-            history.push("/")
-        }
+        return validateSessionID(sessionID, setIsCorrectSession, history)
+
     }, [])
     return (
+        isCorrectSession?
         <div>
             <Toolbar/>
             <SettingBar/>
             <Canvas/>
         </div>
+            :<div/>
     );
 });
 
+
+const validateSessionID = (sessionID, setIsCorrectSession, history) => {
+    if (sessionID.length === uidLength.UID || sessionID.length === uidLength.UUID_V4) {
+        setIsCorrectSession(true)
+        const socket = new WebSocket(`ws://localhost:5000/draw/${sessionID}?token=${localStorage.getItem("token")}`)
+        //SocketStore.setSocket(socket, sessionID)
+        WebSocketHandler.setSocket(socket, sessionID)
+        return () => {
+            socket.close()
+            SocketStore.setSocket(null, null)
+            console.log("socket закрыт")
+        }
+    }
+    else {
+        alert("Введён неверный UID сессии!")
+        // Заменить, когда будет готова страница с ошибкой при вводе неправильного url
+        history.push("/")
+    }
+}
 export default DrawWindow;
