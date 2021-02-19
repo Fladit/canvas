@@ -1,7 +1,7 @@
-import axiosConfigured from "../../utils/axiosConfigured";
-import UserStore from "../../store/UserStore";
+import axiosConfigured from "./axiosConfigured";
+import UserStore from "../store/UserStore";
 import jwtDecode from "jwt-decode";
-import routes from "../../utils/routes";
+import routes from "./routes";
 
 const login = async (username, password, history) => {
     try {

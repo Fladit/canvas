@@ -1,6 +1,6 @@
 import React from 'react';
 import AuthTemplate from "../AuthTemplate/AuthTemplate";
-import {login} from "../authLogic";
+import {login} from "../../../utils/authLogic";
 
 const Authentication = () => {
     return (

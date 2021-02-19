@@ -1,6 +1,6 @@
 import React from 'react';
 import AuthTemplate from "../AuthTemplate/AuthTemplate";
-import {registration} from "../authLogic";
+import {registration} from "../../../utils/authLogic";
 
 const Registration = () => {
     return (

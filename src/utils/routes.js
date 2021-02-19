@@ -1,7 +1,8 @@
 const routes = {
-    REGISTRATION: "/api/auth/registration",
-    LOGIN: "/api/auth/login",
-    CREATE_CANVAS: "/api/canvas/createSession"
+    REGISTRATION: "/auth/registration",
+    LOGIN: "/auth/login",
+    CREATE_CANVAS: "/canvas/sessions",
+    GET_CANVAS_SESSION: "/canvas/sessions"
 }
 
 export default routes
