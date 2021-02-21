@@ -4,15 +4,11 @@ import "../../styles/main.css"
 import Navbar from "./Navbar/Navbar";
 import PopupWindow from "../../utils/PopupWindow/PopupWindow";
 import {useState} from "react";
-import {useEffect} from "react";
 import JoinSession from "./JoinSession/JoinSession";
 
 const Main = () => {
     const [isActive, setIsActive] = useState(false)
 
-    useEffect(() => {
-        console.log(isActive)
-    }, [isActive])
 
     return (
         <div className={"main"}>
