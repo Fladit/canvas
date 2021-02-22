@@ -6,12 +6,21 @@ import Registration from "./components/Auth/Registration/Registration";
 import {BrowserRouter, Redirect, Route, Switch} from "react-router-dom"
 import UserStore from "./store/UserStore";
 import {observer} from "mobx-react-lite";
-import axiosConfigured from "./utils/axiosConfigured";
-import routes from "./utils/routes";
+import {bindInterceptors, unbindInterceptors} from "./utils/axiosConfigured";
 import Main from "./components/Main/Main";
 
 
 const App = observer(() => {
+
+    useEffect(() => {
+        const token = localStorage.getItem("token")
+        if (token)
+            bindInterceptors(token)
+            UserStore.authentication().catch(err => {
+                alert(err.response.data.message)
+                unbindInterceptors()
+            })
+    }, [])
 
     /*
     const [sessionID, setSessionID] = useState("")

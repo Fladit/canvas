@@ -8,12 +8,22 @@ class UserStore {
 
     constructor() {
         makeAutoObservable(this)
+    }
+
+    async authentication () {
         const token = localStorage.getItem("token")
         if (token)
-            this.authentication(token).then(this.parseToken.bind(this)).catch(e => {
+        {
+            try {
+                const response = await axiosConfigured.post(routes.AUTHENTICATION, {},)
+                this.parseToken(token)
+            }
+            catch (e) {
                 alert(e.response.data.message)
                 this.setUsername("")
-            })
+                console.log("401")
+            }
+        }
     }
 
     parseToken(token) {
@@ -24,12 +34,6 @@ class UserStore {
 
     setUsername(username) {
         this.username = username
-    }
-
-    async authentication (token) {
-        const response = axiosConfigured.post(routes.AUTHENTICATION, {},
-            {headers: {Authorization: `Bearer ${token}`}})
-        return token
     }
 
     get isAuth() {
