@@ -16,12 +16,12 @@ class UserStore {
         {
             try {
                 const response = await axiosConfigured.post(routes.AUTHENTICATION, {},)
-                this.parseToken(token)
+                //console.log(response)
+                this.parseToken(localStorage.getItem("token"))
             }
             catch (e) {
-                alert(e.response.data.message)
                 this.setUsername("")
-                console.log("401")
+                throw e
             }
         }
     }

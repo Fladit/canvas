@@ -14,9 +14,11 @@ const App = observer(() => {
 
     useEffect(() => {
         const token = localStorage.getItem("token")
-        if (token)
-            bindInterceptors(token)
+        const refresh = localStorage.getItem("refresh")
+        if (token && refresh)
+            bindInterceptors(token, refresh)
             UserStore.authentication().catch(err => {
+                console.log("APP catch", err)
                 alert(err.response.data.message)
                 unbindInterceptors()
             })

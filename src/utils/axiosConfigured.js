@@ -1,15 +1,20 @@
 import axios from "axios";
-
+import routes from "./routes";
+const baseURL = "http://localhost:5000/api"
 const axiosConfigured = axios.create({
-    baseURL: "http://localhost:5000/api",
+    baseURL,
     responseType: "json",
 })
+
+const handlingErrors = {
+    TokenExpiredError: "TokenExpiredError"
+}
 
 let reqInterceptor = null
 
 let resInterceptor = null
 
-const bindInterceptors = (token) => {
+const bindInterceptors = (token, refresh) => {
     reqInterceptor = axiosConfigured.interceptors.request.use(function (request) {
         request.headers.Authorization = `Bearer ${token}`
         return request;
@@ -23,8 +28,22 @@ const bindInterceptors = (token) => {
         // Do something with response data
         return response;
     }, function (error) {
-        // Any status codes that falls outside the range of 2xx cause this function to trigger
-        // Do something with response error
+        if (error.response.data.name === handlingErrors.TokenExpiredError) {
+            return new Promise((resolve, reject) => {
+
+            axios.post(`${baseURL}${routes.REFRESH}`, {refresh},
+                {headers: {Authorization: `Bearer ${token}`}})
+                .then(res => {
+                    localStorage.setItem("token", res.data.access)
+                    localStorage.setItem("refresh", res.data.refresh)
+                    resolve(res)
+                })
+                .catch(err => {
+                    console.log(err.response)
+                    reject(err)
+                })
+        })
+        }
         return Promise.reject(error);
     });
 }

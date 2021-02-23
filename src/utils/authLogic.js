@@ -6,17 +6,7 @@ import routes from "./routes";
 const login = async (username, password, history) => {
     try {
         const response = await axiosConfigured.post(routes.LOGIN, {username, password})
-        const token = response.data.token
-        const decoded =jwtDecode(token)
-        if (decoded.hasOwnProperty("username")) {
-            //console.log("token: ", token)
-            localStorage.setItem("token", token)
-            UserStore.setUsername(decoded.username)
-            //history.push("/")
-        }
-        else {
-            alert("Ошибка на сервере, username не был вовзращён.")
-        }
+        auth(response)
     }
     catch (e) {
         alert(e.response.data.message)
@@ -26,20 +16,25 @@ const login = async (username, password, history) => {
 const registration = async (username, password, history) => {
     try {
         const response = await axiosConfigured.post(routes.REGISTRATION, {username, password})
-        const token = response.data.token
-        console.log("token: ", token)
-        localStorage.setItem("token", token)
-        const decoded =jwtDecode(token)
-        if (decoded.hasOwnProperty("username")) {
-            UserStore.setUsername(decoded.username)
-            history.push("/")
-        }
-        else {
-            alert("Ошибка на сервере, username не был вовзращён.")
-        }
+        auth(response)
     }
     catch (e) {
         alert(e.response.data.message)
+    }
+}
+
+const auth = (response) => {
+    const token = response.data.access
+    const refresh = response.data.refresh
+    const decoded =jwtDecode(token)
+    if (decoded.hasOwnProperty("username")) {
+        //console.log("token: ", token, refresh)
+        localStorage.setItem("token", token)
+        localStorage.setItem("refresh", refresh)
+        UserStore.setUsername(decoded.username)
+    }
+    else {
+        alert("Ошибка на сервере, username не был вовзращён.")
     }
 }
 
