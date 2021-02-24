@@ -15,13 +15,7 @@ let reqInterceptor = null
 let resInterceptor = null
 
 const bindInterceptors = (token, refresh) => {
-    reqInterceptor = axiosConfigured.interceptors.request.use(function (request) {
-        request.headers.Authorization = `Bearer ${token}`
-        return request;
-    }, function (error) {
-        // Do something with request error
-        return Promise.reject(error);
-    });
+    axiosConfigured.defaults.headers.common["Authorization"] = `Bearer ${token}`
 
     resInterceptor = axiosConfigured.interceptors.response.use(function (response) {
         // Any status code that lie within the range of 2xx cause this function to trigger
@@ -36,6 +30,7 @@ const bindInterceptors = (token, refresh) => {
                 .then(res => {
                     localStorage.setItem("token", res.data.access)
                     localStorage.setItem("refresh", res.data.refresh)
+                    axiosConfigured.defaults.headers.common["Authorization"] = `Bearer ${res.data.access}`
                     resolve(res)
                 })
                 .catch(err => {
