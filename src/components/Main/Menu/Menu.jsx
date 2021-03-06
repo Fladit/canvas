@@ -22,13 +22,10 @@ const Menu = ({setIsActive}) => {
 const createSession = async (history) => {
     try {
         const sessionID = `${UserStore.username.substring(0, 3).toLowerCase()}${Date.now().toString()}`
-        const response = await axiosConfigured.post(routes.CREATE_CANVAS, {sessionID},
-            {headers: {authorization: `Bearer ${localStorage.getItem("token")}`}})
-        history.push(`/${sessionID}`)
+        const response = await axiosConfigured.post(routes.CREATE_CANVAS, {sessionID})
+        history.push(`/${response.data.sessionID}`)
     }
     catch (e) {
-        localStorage.setItem("token", "")
-        UserStore.setUsername("")
         alert(e.response.data.message)
     }
 

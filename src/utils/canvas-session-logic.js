@@ -3,9 +3,8 @@ import routes from "./routes";
 
 const joinSession = async (id, history) => {
     try {
-        const response = await axiosConfigured.get(`${routes.GET_CANVAS_SESSION}/${id}`,
-            {headers: {Authorization: `Bearer ${localStorage.getItem("token")}`}})
-        history.push(`/${id}`)
+        const response = await axiosConfigured.get(`${routes.GET_CANVAS_SESSION}/${id}`)
+        history.push(`/${response.data.sessionID}`)
     }
     catch (e) {
         alert("Сессия с ведённым id не существует!")

@@ -31,7 +31,10 @@ const bindInterceptors = (token, refresh) => {
                     localStorage.setItem("token", res.data.access)
                     localStorage.setItem("refresh", res.data.refresh)
                     axiosConfigured.defaults.headers.common["Authorization"] = `Bearer ${res.data.access}`
-                    resolve(res)
+                    if (error.config.url === routes.AUTHENTICATION)
+                        resolve(res)
+                    error.config.headers.Authorization = `Bearer ${res.data.access}`
+                    axios.request(error.config).then(res => {resolve(res)}).catch(err => {Promise.reject(err)})
                 })
                 .catch(err => {
                     console.log(err.response)
