@@ -4,13 +4,12 @@ import NavbarLink from "../../../utils/NavbarLink/NavbarLink";
 import {mainLinks} from "../../../api/NavbarLinks"
 
 
-const Navbar = () => {
+const Navbar = React.memo(function Navbar() {
     return (
         <div className={"navbar navbar-center"}>
             <NavbarLink path={mainLinks.MAIN.path} label={mainLinks.MAIN.label}/>
             <NavbarLink path={mainLinks.OPTIONS.path} label={mainLinks.OPTIONS.label}/>
         </div>
     );
-};
-
+})
 export default Navbar;
